@@ -23,6 +23,7 @@
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $route['Route']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $route['Route']['id'])); ?>
 			<?php echo $this->Html->link(__('Extend'), array('action' => 'myadd', $route['Route']['id'])); ?>
+			
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $route['Route']['id']), null, __('Are you sure you want to delete # %s?', $route['Route']['id'])); ?>
 		</td>
 	</tr>

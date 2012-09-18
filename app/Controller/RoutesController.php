@@ -22,9 +22,18 @@ public $paginate = array(
 		$this->set('routes', $this->paginate());
 	}
 
-	public function disp() {
-		$this->Station->recursive = 0;
-		$this->set('stations', $this->paginate());
+	//displays a maps 
+	public function disp($id = null) {
+		$this->Route->id = $id;
+		if (!$this->Route->exists()) {
+			throw new NotFoundException(__('Invalid route'));
+		}
+		
+		$this->set('routes', $this->Route->find('all',array(
+        'conditions' => array('Bus.id' => $id))
+		));
+		
+		
 	}
 /**
  * view method

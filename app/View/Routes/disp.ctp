@@ -1,17 +1,18 @@
 <?php $this->layout = 'abcd'; ?>
 
+<?php //var_dump($routes);?>
 <script type="text/javascript">
 var i = 0;
 var arr = new Array();
-<?php foreach ($stations as $station): ?>
-	<?php $m = h($station['Station']['id']); ?>
+<?php foreach ($routes as $r): ?>
+	<?php $m = h($r['Station']['id']); ?>
 		 arr[i] = new Object();
-		 arr[i].name = "<?php echo h($station['Station']['name']); ?>";
-		 arr[i].lat = <?php echo h($station['Station']['map_lat']); ?>;
-		 arr[i].lng = <?php echo h($station['Station']['map_long']); ?>;
+		 arr[i].name = "<?php echo h($r['Station']['name']); ?>";
+		 arr[i].lat = <?php echo h($r['Station']['map_lat']); ?>;
+		 arr[i].lng = <?php echo h($r['Station']['map_long']); ?>;
 		 i+=1;
 <?php endforeach; ?>
-
+console.log(arr);
 
 var mapOptions = {
           center: new google.maps.LatLng(arr[0].lat, arr[0].lng),
@@ -30,3 +31,4 @@ var mapOptions = {
 			});
 		}
 </script>
+
