@@ -34,6 +34,11 @@ class StationsController extends AppController {
 			throw new NotFoundException(__('Invalid station'));
 		}
 		$this->set('station', $this->Station->read(null, $id));
+		
+		$v = ($this->Station->Route->find('all',array(
+        'conditions' => array('Station.id' => $id))
+		));
+		$this->set('buses',$v);
 	}
 
 /**

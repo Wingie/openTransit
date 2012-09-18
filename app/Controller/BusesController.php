@@ -1,12 +1,13 @@
 <?php
-App::uses('AppController', 'Controller');
+App::uses('AppController', 'Controller','RouteController');
 /**
  * Buses Controller
  *
  * @property Bus $Bus
  */
 class BusesController extends AppController {
-
+var $helpers = array('Html','Form', 'Time','Paginator'); 
+ 
 /**
  * index method
  *
@@ -30,6 +31,14 @@ class BusesController extends AppController {
 			throw new NotFoundException(__('Invalid bus'));
 		}
 		$this->set('bus', $this->Bus->read(null, $id));
+		
+				  
+		$v = $this->Bus->Route->find('all',array(
+        'conditions' => array('Bus.id' => $id))
+		);
+		$this->set('routes',$v);
+		
+		
 	}
 
 /**

@@ -6,7 +6,7 @@ App::uses('AppModel', 'Model');
  * @property Route $Route
  */
 class Station extends AppModel {
-
+var $order = 'name';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

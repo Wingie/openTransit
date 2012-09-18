@@ -12,6 +12,29 @@
 			&nbsp;
 		</dd>
 	</dl>
+
+	<table cellpadding="0" cellspacing="0">
+	<tr>
+			<th><?php echo ('id'); ?></th>
+			<th><?php echo ('bus_id'); ?></th>
+			<th><?php echo ('station_id'); ?></th>
+			<th><?php echo ('run_order'); ?></th>
+	</tr>
+
+<?php
+	foreach ($routes as $route): ?>
+	<tr>
+		<td><?php echo h($route['Route']['id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($route['Bus']['name'], array('controller' => 'buses', 'action' => 'view', $route['Bus']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($route['Station']['name'], array('controller' => 'stations', 'action' => 'view', $route['Station']['id'])); ?>
+		</td>
+		<td><?php echo h($route['Route']['run_order']); ?>&nbsp;</td>
+	</tr>
+<?php endforeach; ?>
+</table>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

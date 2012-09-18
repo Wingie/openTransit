@@ -124,6 +124,8 @@ div.actions {
 	width:16%;
 	padding:10px 1.5%;
 }
+
+
 div.actions h3 {
 	padding-top:0;
 	color:#777;
@@ -736,4 +738,9 @@ pre {
 /** Elements **/
 #url-rewriting-warning {
 	display:none;
+}
+
+#b
+{
+	width:100%;
 }

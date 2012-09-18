@@ -22,6 +22,23 @@
 			&nbsp;
 		</dd>
 	</dl>
+	
+	<table cellpadding="0" cellspacing="0">
+	<tr>
+			<th><?php echo ('id'); ?></th>
+			<th><?php echo ('name'); ?></th>
+			
+			
+	</tr>
+	<?php
+	foreach ($buses as $bus): ?>
+	<tr>
+		<td><?php echo $this->Html->link($bus['Bus']['id'],array('controller' => 'buses', 'action' => 'view', $bus['Bus']['id'])); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($bus['Bus']['name'],array('controller' => 'buses', 'action' => 'view', $bus['Bus']['id'])); ?>&nbsp;</td>
+		
+<?php endforeach; ?>
+	</table>
+	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

@@ -6,7 +6,12 @@ App::uses('AppController', 'Controller');
  * @property Route $Route
  */
 class RoutesController extends AppController {
-
+public $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'Route.id' => 'desc'
+        )
+    );
 /**
  * index method
  *
@@ -17,6 +22,10 @@ class RoutesController extends AppController {
 		$this->set('routes', $this->paginate());
 	}
 
+	public function disp() {
+		$this->Station->recursive = 0;
+		$this->set('stations', $this->paginate());
+	}
 /**
  * view method
  *

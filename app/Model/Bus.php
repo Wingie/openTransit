@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  */
 class Bus extends AppModel {
 
+var $uses = array('Station', 'Routes', 'Bus'); 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
