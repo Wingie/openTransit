@@ -1,0 +1,24 @@
+
+<div class="routes form">
+<?php echo $this->Form->create('Route'); ?>
+	<fieldset>
+		<legend><?php echo __('Bus Route Start.'); ?></legend>
+	<?php
+		echo $this->Form->input('bus_id');
+		echo $this->Form->input('num');
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit')); ?>
+</div>
+
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Routes'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Buses'), array('controller' => 'buses', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Bus'), array('controller' => 'buses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Stations'), array('controller' => 'stations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Station'), array('controller' => 'stations', 'action' => 'add')); ?> </li>
+	</ul>
+</div>

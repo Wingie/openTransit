@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `buses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM ;
+
+CREATE TABLE IF NOT EXISTS `stations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `map_lat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `map_long` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM ;
+
+
+CREATE TABLE IF NOT EXISTS `routes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bus_id` int references buses(id),
+  `station_id` int references stations(id),
+  `run_order` int(11),
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
