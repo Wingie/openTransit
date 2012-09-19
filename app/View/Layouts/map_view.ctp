@@ -30,7 +30,7 @@
   <div class="map_canvas" id="map_canvas" ></div>
   
 	<div id="content">
-			<div id="overlayer" ></div>
+			
 			
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>

@@ -23,6 +23,7 @@
 			<?php echo $this->Html->link(__('List Buses'), array('controller' => 'buses', 'action' => 'index')); ?> 	
 			<?php echo $this->Html->link(__('List Routes'), array('controller' => 'routes', 'action' => 'index')); ?> 
 			<?php echo $this->Html->link(__('List Stations'), array('controller' => 'Stations', 'action' => 'index')); ?> 
+			<?php echo $this->Html->link(__('Show Route Maps'), array('controller' => 'routes', 'action' => 'disp')); ?> 	
 			</div>
 		</div>
 		<div id="content">

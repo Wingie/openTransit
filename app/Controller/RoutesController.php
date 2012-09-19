@@ -58,7 +58,7 @@ public $paginate = array(
 
 /**
  * add method
- *
+ *	n_krishnaprakash@cb.amrita.edu
  * @return void
  */
 	public function add() {
@@ -81,19 +81,30 @@ public $paginate = array(
 		if (!$this->Route->exists()) {
 			throw new NotFoundException(__('Invalid route'));
 		}
+		
 		if ($this->request->is('post') || $this->request->is('put')) {
+			//var_dump($this->request->data);
+			//**
+			$conditions = array('Bus.id' => $this->request->data['Route']['bus_id'],
+								'Route.run_order > ?' => ($this->request->data['Route']['run_order']-1)
+			);		
+			$x = ($this->Route->find('all',array('conditions' => $conditions)));
+			foreach ($x as $y):
+				$y['Route']['run_order']+=1;
+				$this->Route->save($y);
+			endforeach;
+			//**
 			$this->request->data['Route']['id']=null;
-			var_dump($this->request->data);
 			if ($this->Route->save($this->request->data)) {
 				$this->Session->setFlash(__('The route has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The route could not be saved. Please, try again.'));
 			}
-		} else {
+		} 		
+		else {
 			$this->request->data = $this->Route->read(null, $id);
 			$this->request->data['Route']['run_order'] +=1;
-			
 		}
 		$buses = $this->Route->Bus->find('list');
 		$stations = $this->Route->Station->find('list');

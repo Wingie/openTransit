@@ -63,3 +63,13 @@ console.log(arr);
 <?php endforeach; ?>
 </ol>
 </div>
+
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Buses'), array('controller' => 'buses', 'action' => 'index')); ?> 	</li>
+			<li><?php echo $this->Html->link(__('List Routes'), array('controller' => 'routes', 'action' => 'index')); ?> </li>
+		<li>	<?php echo $this->Html->link(__('List Stations'), array('controller' => 'Stations', 'action' => 'index')); ?> </li>
+	</ul>
+</div>
