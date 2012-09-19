@@ -26,15 +26,20 @@ public $paginate = array(
 	public function disp($id = null) {
 		$this->Route->id = $id;
 		if (!$this->Route->exists()) {
-			throw new NotFoundException(__('Invalid route'));
+			//throw new NotFoundException(__('Invalid route'));
+			
 		}
 		
 		$this->set('routes', $this->Route->find('all',array(
         'conditions' => array('Bus.id' => $id))
 		));
 		
+		$this->set('list', $this->Route->find('all',array(
+        'conditions' => array('Route.run_order' => '0'))
+		));
 		
 	}
+	
 /**
  * view method
  *
@@ -43,6 +48,7 @@ public $paginate = array(
  * @return void
  */
 	public function view($id = null) {
+	
 		$this->Route->id = $id;
 		if (!$this->Route->exists()) {
 			throw new NotFoundException(__('Invalid route'));

@@ -1,9 +1,15 @@
-<?php $this->layout = 'abcd'; ?>
+<?php $this->layout = 'map_view'; ?>
 
-<?php //var_dump($routes);?>
 <script type="text/javascript">
 var i = 0;
 var arr = new Array();
+
+<?php if (empty($routes))	{?>
+	arr[0] = new Object();
+	arr[0].lat = '10.989254';
+	arr[0].lng = '76.961181';
+<?php }?>
+
 <?php foreach ($routes as $r): ?>
 	<?php $m = h($r['Station']['id']); ?>
 		 arr[i] = new Object();
@@ -14,21 +20,46 @@ var arr = new Array();
 <?php endforeach; ?>
 console.log(arr);
 
-var mapOptions = {
+		var mapOptions = {
           center: new google.maps.LatLng(arr[0].lat, arr[0].lng),
-          zoom: 16,
+          zoom: 12,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
-		for(var i = 0;i<arr.length;i++){
-			console.log(arr[i]);
-			var myLatlng = new google.maps.LatLng(arr[i].lat, arr[i].lng);
-			var marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map,
-			title:arr[i].name
-			});
+			
+		var bounds = new google.maps.LatLngBounds ();
+		var coords = new Array();
+		if(arr.length>1){
+			for(var i = 0;i<arr.length;i++){
+				//console.log(arr[i]);
+				var myLatlng = new google.maps.LatLng(arr[i].lat, arr[i].lng);
+				var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				});
+				bounds.extend(myLatlng);
+				coords[i] = new google.maps.LatLng(arr[i].lat, arr[i].lng);
+			}
+			var Path = new google.maps.Polyline({
+				path: coords,
+				strokeColor: "#FF0000",
+				strokeOpacity: 1.0,
+				strokeWeight: 2
+			 });
+			 Path.setMap(map);
+			map.fitBounds (bounds);
 		}
 </script>
 
+<div class="index p">
+<h2><?php echo __('Available Routes'); ?></h2>
+<ol>
+<?php
+	foreach ($list as $l): ?>
+	<li>
+		<?php echo $this->Html->link($l['Bus']['name'], array('controller' => 'routes', 'action' => 'disp', $l['Bus']['id'])); ?>
+		</li>
+<?php endforeach; ?>
+</ol>
+</div>
