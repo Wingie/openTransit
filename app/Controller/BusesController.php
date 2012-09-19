@@ -34,7 +34,7 @@ var $helpers = array('Html','Form', 'Time','Paginator');
 		
 				  
 		$v = $this->Bus->Route->find('all',array(
-        'conditions' => array('Bus.id' => $id))
+        'conditions' => array('Bus.id' => $id),'order' => array('Route.run_order ASC'),)
 		);
 		$this->set('routes',$v);
 		
